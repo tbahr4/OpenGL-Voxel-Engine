@@ -40,7 +40,7 @@ TextureAtlas::TextureAtlas(const char* img, int textureSize) {
 //
 vec2 TextureAtlas::getTextureCoords(int textureIndex) {
 	if (textureIndex < 0 || textureIndex >= maxTextures) {
-		Logger::log(Logger::WARNING, "Attempting to access invalid texture coordinates");
+		Logger::log(Logger::FATAL, "Attempting to access invalid texture coordinates");
 		return vec2(-999, -999);
 	}
 
