@@ -1,0 +1,8 @@
+.vs
+Libraries
+x64
+glad.c
+*.sln
+OpenGL Voxel Engine.vcxproj.user
+OpenGL Voxel Engine.vcxproj.filters
+OpenGL Voxel Engine.vcxproj
