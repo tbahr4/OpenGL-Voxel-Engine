@@ -11,7 +11,7 @@ TextureAtlas Blocks::textures;
 //
 void Blocks::init() {
 	// Init atlas
-	textures = TextureAtlas("textures/blocks.png", 32);
+	textures = TextureAtlas("assets/textures/blocks.png", 32);
 }
 
 // getAtlasTextureID
