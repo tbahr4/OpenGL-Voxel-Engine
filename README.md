@@ -20,4 +20,4 @@ World example
 ![World Example](github/worldExample.png)
 
 **Disclaimer:** 
-The engine does *not* implement everything needed to create a voxel world. The engine does not implement the optimizations necessary (such as chunk management, instancing, or occlusion culling) since they are dependent on the implementation of the world builder, which is not in the template.
+The engine *does* implement everything needed to create a voxel world. The engine does **not**, however, implement the necessary optimizations (such as chunk management, instancing, or occlusion culling) since they are dependent on the implementation of the world builder, which is not in this template.
