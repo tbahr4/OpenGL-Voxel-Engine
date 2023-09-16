@@ -7,6 +7,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include <map>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
@@ -32,15 +33,18 @@ private:
 	int width;			// The size of the atlas image (must be same as height)
 	int maxTextures;	// The maximum number of available textures
 
+	map<string, int> imageIndex;	// Maps image names to their index in the atlas
+
 	
 
 public:
 	// Constructors
 	TextureAtlas() = default;
-	TextureAtlas(const char* imagePath, int textureSize);
+	TextureAtlas(const char* imagePath, int textureSize, vector<pair<string,int>> imageLocations);
 
 	// Other functions
 	vec2 getTextureCoords(int textureIndex);	// Returns the texture coords given an index
+	vec2 getTextureCoords(string imageName);	// Return the texture coords given an image name
 	int size() const;				// Returns max number of available textures
 	int getTextureID() const;		// Returns texture ID of the atlas
 
