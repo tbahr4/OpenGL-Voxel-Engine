@@ -147,8 +147,11 @@ bool Engine::loop() {
 		shader->setMat4("model", model);
 
 		shader->setVec3("voxelColor", world->getPropertiesVector()[i].color);
-		shader->setVec2("TextureOffset", Blocks::TEXTURE(world->getPropertiesVector()[i].id));
-		shader->setFloat("TextureSize", 1 / sqrt(Blocks::getAtlasMaxTextures()));
+		vector<vec2> textures = Blocks::TEXTURE(world->getPropertiesVector()[i].id);
+		for (int i = 0; i < 6; i++) {
+			shader->setVec2("TextureOffsets[" + to_string(i) + "]", textures[i]);
+		}
+		shader->setFloat("TextureSize", (float)(1 / sqrt(Blocks::getAtlasMaxTextures())));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 	}
 

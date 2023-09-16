@@ -23,11 +23,11 @@ void main()
 	} else { 
 		// Shading
 		if (Normal.x == 0 && Normal.y == 0 && Normal.z > 0) FragmentColor = adjustBrightness(FragmentColor, .8);		// Front
-		else if (Normal.x == 0 && Normal.y == 0 && Normal.z < 0) FragmentColor = adjustBrightness(FragmentColor, .7);	// Back
 		else if (Normal.x < 0 && Normal.y == 0 && Normal.z == 0) FragmentColor = adjustBrightness(FragmentColor, .6);	// Left
+		else if (Normal.x == 0 && Normal.y == 0 && Normal.z < 0) FragmentColor = adjustBrightness(FragmentColor, .7);	// Back
 		else if (Normal.x > 0 && Normal.y == 0 && Normal.z == 0) FragmentColor = adjustBrightness(FragmentColor, .9);	// Right
-		else if (Normal.x == 0 && Normal.y < 0 && Normal.z == 0) FragmentColor = adjustBrightness(FragmentColor, .4);	// Bottom
 		else if (Normal.x == 0 && Normal.y > 0 && Normal.z == 0) FragmentColor = adjustBrightness(FragmentColor, 1);	// Top
+		else if (Normal.x == 0 && Normal.y < 0 && Normal.z == 0) FragmentColor = adjustBrightness(FragmentColor, .4);	// Bottom
 	}	
 }
 

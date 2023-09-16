@@ -33,11 +33,18 @@ public:
 	}
 
 	// Block Textures
-	static const vec2 TEXTURE(ID id) {
+	static const vector<vec2> TEXTURE(ID id) {
 		if (id <= 0 || id > textures.size()) {
 			Logger::log(Logger::WARNING, "Accessing invalid block texture");
 		}
-		return textures.getTextureCoords(id - 1);		// Offset by 1 to skip empty texture ID
+
+		auto textureNames = getTextureNames(id);
+		vector<vec2> coordList(6);
+		for (int i = 0; i < 6; i++) {
+			coordList[i] = textures.getTextureCoords(textureNames[i]);
+		}
+
+		return coordList;
 	}
 
 	static int getAltasTextureID();		// Returns the texture ID referenced by the atlas
@@ -45,6 +52,9 @@ public:
 
 private:
 	static string name[];
+	static string textureName[][6];
 	static TextureAtlas textures;
+
+	static string* getTextureNames(ID id);		// Returns the list of textures for a given block id
 };
 

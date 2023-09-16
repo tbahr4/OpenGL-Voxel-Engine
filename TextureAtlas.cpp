@@ -11,7 +11,7 @@
 // Constructor
 // Loads an atlas of textures from an image path and provided size of each texture
 //
-TextureAtlas::TextureAtlas(const char* img, int textureSize) {
+TextureAtlas::TextureAtlas(const char* img, int textureSize, vector<pair<string,int>> imageLocations) {
 	int atlasWidth, atlasHeight;
 	if (!generateAtlas(img, atlasWidth, atlasHeight)) {
 		Logger::log(Logger::WARNING, "Texture atlas unable to be generated");
@@ -32,6 +32,14 @@ TextureAtlas::TextureAtlas(const char* img, int textureSize) {
 	this->width = atlasWidth;
 	this->textureSize = textureSize;
 	this->maxTextures = (atlasWidth / textureSize) * (atlasHeight / textureSize);
+
+	if (imageLocations.size() >= this->maxTextures) {
+		Logger::log(Logger::FATAL, "Invalid name list size for texture");
+	}
+
+	for (pair<string, int>& p : imageLocations) {
+		this->imageIndex[p.first] = p.second;
+	}
 }
 
 
@@ -53,6 +61,17 @@ vec2 TextureAtlas::getTextureCoords(int textureIndex) {
 	float yAdj = float(y) / float(texturesPerRow);
 
 	return vec2(xAdj, yAdj);
+}
+
+// getTextureCoords
+// Return the texture coords given an image name
+//
+vec2 TextureAtlas::getTextureCoords(string imageName) {
+	if (!this->imageIndex.count(imageName)) {
+		Logger::log(Logger::FATAL, "Invalid image name in texture coordinate search");
+	}
+
+	return getTextureCoords(this->imageIndex.at(imageName));
 }
 
 
